@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "colomba",
+    "slug": "colomba",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "colomba"
+}
