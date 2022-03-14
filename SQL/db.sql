@@ -13,3 +13,11 @@ CREATE TABLE IF NOT EXISTS Trattamenti (
     PRIMARY KEY(Arnia, Data_registrazione)
 );
 
+CREATE VIEW IF NOT EXISTS TrattamentiPerArnia AS
+SELECT * FROM Trattamenti
+ORDER BY Arnia;
+
+CREATE VIEW IF NOT EXISTS ArniePerTrattamento AS
+SELECT * FROM Trattamenti
+ORDER BY Titolo;
+
