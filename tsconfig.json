@@ -6,8 +6,9 @@
     "isolatedModules": true,
     "jsx": "react-native",
     "lib": [
-      "es2017"
+      "esnext"
     ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,

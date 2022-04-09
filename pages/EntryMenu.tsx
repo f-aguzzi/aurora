@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { styles } from '../types/styles';
 import { StatusBar } from 'expo-status-bar';
 import { Pages } from '../types/types';
 
@@ -26,28 +27,19 @@ export default function EntryMenu ({ setCurrentPage }: EntryMenuProps) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={{fontSize: 30, fontWeight: 'bold'}}>Benvenuto!</Text>
+			<Text style={styles.heading}>Benvenuto!</Text>
 			<StatusBar style="auto" />
 			<TextInput 
 				onChangeText={(e) => setInputText(e)}
 				autoCorrect={false}
 				secureTextEntry={true}
-				style={{backgroundColor: 'gray', padding: 15, margin: 10, borderRadius: 5}}
+				style={styles.input}
 				placeholder="Inserisci il codice..."
 			/>
-			<TouchableOpacity onPress={() => authenticateUser()} style={{backgroundColor: 'green', padding: 5, margin: 5, borderRadius: 5}}>
+			<TouchableOpacity onPress={() => authenticateUser()} style={styles.confirmButton}>
 				<Text style={{fontSize: 24, color: 'white'}}>Entra</Text>
 			</TouchableOpacity>
-			<Text style={{fontSize: 20, color: 'red'}}>{errorMessageText()}</Text>
+			<Text style={styles.error}>{errorMessageText()}</Text>
 		</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-	  flex: 1,
-	  backgroundColor: '#fff',
-	  alignItems: 'center',
-	  justifyContent: 'center',
-	},
-  });
