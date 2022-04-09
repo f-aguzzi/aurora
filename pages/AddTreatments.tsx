@@ -51,30 +51,46 @@ function AddTreatments({ setCurrentPage }: AddTreatmentsInterface) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}> Inserisci nuova arnia </Text>
+            <Text style={styles.heading}> Inserisci nuovo trattamento </Text>
             <View>
-                <View>
-                    <Text>Numero dell'arnia</Text>
-                    <TextInput 
-                        onChangeText={e => setHive(parseInt(e))}
-                        autoCorrect={false}
-                        secureTextEntry={false}
-                        style={styles.input}
-                        placeholder="Inserisci il numero..."
-			        />
-                </View>
+                <Text>Nome del trattamento</Text>
+                <TextInput 
+                    onChangeText={e => setTitle(e)}
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    style={styles.input}
+                    placeholder="Inserisci il numero..."
+                />
             </View>
             <View>
-                <View>
-                    <Text>Data d'inserimento</Text>
-                    <TextInput 
-                        onChangeText={e => setDate(new Date(e))}
-                        autoCorrect={false}
-                        secureTextEntry={false}
-                        style={styles.input}
-                        placeholder="Inserisci la data..."
-			        />
-                </View>
+                <Text>Numero dell'arnia</Text>
+                <TextInput 
+                    onChangeText={e => setHive(parseInt(e))}
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    style={styles.input}
+                    placeholder="Inserisci il numero..."
+                />
+            </View>
+            <View>
+                <Text>Data d'inserimento</Text>
+                <TextInput 
+                    onChangeText={e => setDate(new Date(e))}
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    style={styles.input}
+                    placeholder="Inserisci la data..."
+                />
+            </View>
+            <View>
+                <Text>Descrizione</Text>
+                <TextInput 
+                    onChangeText={e => setDescription(e)}
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    style={styles.input}
+                    placeholder="Inserisci il numero..."
+                />
             </View>
             <TouchableOpacity onPress={() => insertHive()} style={styles.confirmButton}>
 				<Text style={{fontSize: 24, color: 'white'}}>Inserisci</Text>

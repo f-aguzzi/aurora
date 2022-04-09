@@ -14,7 +14,7 @@ export default function MainMenu({ setCurrentPage }: MainMenuProps) {
                 <TouchableOpacity onPress={() => setCurrentPage(Pages.Hives)} style={styles.button} >
                     <Text style={styles.text}> Arnie </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={() => setCurrentPage(Pages.Treatments)} style={styles.button}>
                     <Text style={styles.text}> Trattamenti </Text>
                 </TouchableOpacity>
             </View>

@@ -34,9 +34,14 @@ function AddHives({ setCurrentPage }: EntryMenuProps) {
     const insertHive = async () => {
 
         let condition = await getData("h" + number.toString());
+        setErrorMessage(number.toString());
+
+        if (Number.isNaN(number)) {
+            setErrorMessage("Non è un numero");
+            return;
+        }
 
         if (condition === null) {
-            setErrorMessage("");
             let hive: Hive;
             hive = {
                 'hive': number,
@@ -47,7 +52,7 @@ function AddHives({ setCurrentPage }: EntryMenuProps) {
             storeData("h" + number.toString(), string);
 
             setCurrentPage(Pages.HiveAddedCorrectly);
-
+            
         } else {
             setErrorMessage("Arnia già esistente");
         }

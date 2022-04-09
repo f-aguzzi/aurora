@@ -2,13 +2,10 @@ import React, { JSXElementConstructor, ReactChild, useEffect, useState } from "r
 import { View, Text, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../types/styles";
-import { Hive, Pages } from "../types/types";
+import { Treatment, Pages, PageProps } from "../types/types";
 
-interface ViewHivesProps {
-    setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
-}
 
-function ViewHives({ setCurrentPage }: ViewHivesProps) {
+function ViewTreatments({ setCurrentPage }: PageProps) {
 
 	const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
@@ -35,7 +32,7 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 	useEffect(() => {
 
 		getKeys().then(result => {
-			const filteredResults = result.filter(item => (item.charAt(0) === 'h'));
+			const filteredResults = result.filter(item => (item.charAt(0) === 't'));
 			setKeys(filteredResults);
 		}).catch(e => {
 			// error handlig
@@ -44,7 +41,7 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 
 	useEffect(() => {
 
-		let hives: Promise<Hive>[] = [];
+		let hives: Promise<Treatment>[] = [];
 		keys.map(async (key) => {
 			hives.push(getData(key));
 		});
@@ -52,11 +49,13 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 		Promise.all(hives).then(result => {
 
 			let elements: JSX.Element[] = [];
-			result.map(async (hive) => {
+			result.map(async (treatment) => {
 				elements.push(
-					<View style={styles.hiveView}>
-						<Text style={styles.text}> Arnia {hive.hive.toString()} </Text>
-						<Text style={styles.text}> Costruita il {hive.registerDate} </Text>
+					<View key={treatment.title + treatment.registerDate} style={styles.hiveView}>
+						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
+                        <Text style={styles.text}> Sull'arnia: {treatment.hive} </Text>
+						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
+                        <Text style={styles.text}> Descrizione: {treatment.description} </Text>
 					</View>
 				)
 			})
@@ -73,7 +72,7 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 
     return (
         <View style={styles.container} >
-            <Text style={styles.heading}> Lista Arnie </Text>
+            <Text style={styles.heading}> Lista Trattamenti </Text>
 			<ScrollView>
 			{ elements }
 			</ScrollView>
@@ -81,4 +80,4 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
     )
 }
 
-export default ViewHives;
+export default ViewTreatments;

@@ -11,6 +11,8 @@ import AddTreatments from './pages/AddTreatments';
 import TreatmentAddedCorrectly from './pages/TreatmentAddedCorrectly';
 import HiveAddedCorrectly from './pages/HiveAddedCorrectly';
 import ViewHives from './pages/ViewHives';
+import ViewTreatments from './pages/ViewTreatments';
+import Treatments from './pages/Treatments';
 
 
 export default function App() {
@@ -38,6 +40,13 @@ export default function App() {
 			<Hives setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
+	} else if (currentPage === Pages.ViewHives) {
+		return (
+		<SafeAreaProvider>
+			<CustomHeader setCurrentPage={setCurrentPage} />
+			<ViewHives setCurrentPage={setCurrentPage} />
+		</SafeAreaProvider>
+		)
 	} else if (currentPage === Pages.AddHives) {
 		return (
 		<SafeAreaProvider>
@@ -52,6 +61,20 @@ export default function App() {
 			<HiveAddedCorrectly setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
+	} else if (currentPage === Pages.Treatments) {
+		return (
+		<SafeAreaProvider>
+			<CustomHeader setCurrentPage={setCurrentPage} />
+			<Treatments setCurrentPage={setCurrentPage} />
+		</SafeAreaProvider>
+		)
+	} else if (currentPage === Pages.ViewTreatments) {
+		return (
+		<SafeAreaProvider>
+			<CustomHeader setCurrentPage={setCurrentPage} />
+			<ViewTreatments setCurrentPage={setCurrentPage} />
+		</SafeAreaProvider>
+		)
   	} else if (currentPage === Pages.AddTreatments) {
 		return (
 		<SafeAreaProvider>
@@ -64,13 +87,6 @@ export default function App() {
 		<SafeAreaProvider>
 			<CustomHeader setCurrentPage={setCurrentPage} />
 			<TreatmentAddedCorrectly setCurrentPage={setCurrentPage}/>
-		</SafeAreaProvider>
-		)
-  	} else if (currentPage === Pages.ViewHives) {
-		return (
-		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<ViewHives setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
 	}
