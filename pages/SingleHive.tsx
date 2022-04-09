@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+import { Text, View } from "react-native";
 import { styles } from "../types/styles";
-import { Treatment } from "../types/types";
+import { Hive, Treatment } from "../types/types";
 
+interface SingleHiveInterface {
+    hive: Hive,
+}
 
-function ViewTreatments() {
+function SingleHive({ hive }: SingleHiveInterface) {
 
-	const [keys, setKeys] = useState<readonly string[]>([]);
+    const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
 
     const getData = async (key: string) => {
@@ -29,31 +32,32 @@ function ViewTreatments() {
         return keys;
     }
 
-	useEffect(() => {
-
+    useEffect(() => {
 		getKeys().then(result => {
-			const filteredResults = result.filter(item => (item.charAt(0) === 't'));
+			const filteredResults = result
+                .filter(item => (item.charAt(0) === 't'));
 			setKeys(filteredResults);
 		}).catch(e => {
 			// error handlig
 		})
 	}, []);
 
-	useEffect(() => {
+    useEffect(() => {
 
-		let hives: Promise<Treatment>[] = [];
+		let treatments: Promise<Treatment>[] = [];
 		keys.map(async (key) => {
-			hives.push(getData(key));
+			treatments.push(getData(key));
 		});
 
-		Promise.all(hives).then(result => {
+		Promise.all(treatments).then(result => {
+
+            const filteredResults = result.filter(item => item.hive === hive.hive);
 
 			let elements: JSX.Element[] = [];
-			result.map(async (treatment) => {
+			filteredResults.map(async (treatment) => {
 				elements.push(
 					<View key={treatment.title + treatment.registerDate} style={styles.hiveView}>
 						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
-                        <Text style={styles.text}> Sull'arnia: {treatment.hive} </Text>
 						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
                         <Text style={styles.text}> Descrizione: {treatment.description} </Text>
 					</View>
@@ -71,13 +75,17 @@ function ViewTreatments() {
 	}, [keys]);
 
     return (
-        <View style={styles.container} >
-            <Text style={styles.heading}> Lista Trattamenti </Text>
-			<ScrollView>
-			{ elements }
-			</ScrollView>
+        <View style={styles.container}>
+            <Text style={styles.heading}>Arnia {hive.hive} </Text>
+            <Text style={styles.text}> Creata il {hive.registerDate.toString()} </Text>
+            <View>
+                <Text style={styles.text}> Trattamenti ricevuti: </Text>
+                { 
+                    (elements.length === 0)? (<Text>Nessun trattamento su quest'arnia. </Text>) : elements
+                }
+            </View>
         </View>
     )
 }
 
-export default ViewTreatments;
+export default SingleHive;

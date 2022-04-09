@@ -2,13 +2,10 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../types/styles'
-import { Hive, Pages } from '../types/types'
+import { Hive, PageProps, Pages } from '../types/types'
 
-interface EntryMenuProps {
-	setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
-}
 
-function AddHives({ setCurrentPage }: EntryMenuProps) {
+function AddHives({ setCurrentPage, setHistory }: PageProps) {
 
     const [number, setNumber] = useState(0);
     const [date, setDate] = useState(new Date());
@@ -51,6 +48,7 @@ function AddHives({ setCurrentPage }: EntryMenuProps) {
             let string = JSON.stringify(hive);
             storeData("h" + number.toString(), string);
 
+            setHistory(history => [...history, Pages.HiveAddedCorrectly]);
             setCurrentPage(Pages.HiveAddedCorrectly);
             
         } else {
@@ -64,8 +62,8 @@ function AddHives({ setCurrentPage }: EntryMenuProps) {
         <View style={styles.container}>
             <Text style={styles.heading}> Inserisci nuova arnia </Text>
             <View>
-                <View>
-                    <Text>Numero dell'arnia</Text>
+                <View style={styles.inputView}>
+                    <Text style={styles.text}> Numero dell'arnia </Text>
                     <TextInput 
                         onChangeText={e => setNumber(parseInt(e))}
                         autoCorrect={false}
@@ -76,8 +74,8 @@ function AddHives({ setCurrentPage }: EntryMenuProps) {
                 </View>
             </View>
             <View>
-                <View>
-                    <Text>Data d'inserimento</Text>
+                <View style={styles.inputView}>
+                    <Text style={styles.text}> Data d'inserimento </Text>
                     <TextInput 
                         onChangeText={e => setDate(new Date(e))}
                         autoCorrect={false}

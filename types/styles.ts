@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
 	  flex: 1,
 	  backgroundColor: '#fff',
 	  alignItems: 'center',
-	  justifyContent: 'center',
+	  //justifyContent: 'center',
 	},
     heading: {
         fontSize: 40,
@@ -27,13 +27,15 @@ export const styles = StyleSheet.create({
         borderRadius: 5
     },
     text: {
-        fontSize: 24
+        fontSize: 24,
     },
     input: {
         backgroundColor: 'gray', 
         padding: 15,
         margin: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        alignItems: 'stretch',
+        width: '40%'
     },
     error: {
         fontSize: 20,
@@ -46,5 +48,22 @@ export const styles = StyleSheet.create({
         backgroundColor: 'yellow',
         borderRadius: 5,
         marginVertical: 3,
+    },
+    dropdown: {
+        fontSize: 24,
+        margin: 10,
+        borderWidth: 1,
+    },
+    dropdownStyle: {
+        minWidth: '30%'
+    },
+    dropdownText: {
+        fontStyle: 'italic',
+        fontSize: 20,
+        margin: 5
+    },
+    inputView: {
+        width: '100%',
+        alignItems: 'center',
     }
 });

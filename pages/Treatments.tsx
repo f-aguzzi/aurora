@@ -3,17 +3,26 @@ import { styles } from "../types/styles";
 import { PageProps, Pages } from "../types/types";
 
 
-function Treatments({ setCurrentPage }: PageProps) {
+function Treatments({ setCurrentPage, setHistory }: PageProps) {
 
+    const toAddTreatments = () => {
+        setHistory(history => [...history, Pages.AddTreatments]);
+        setCurrentPage(Pages.AddTreatments);
+    }
+
+    const toViewTreatments = () => {
+        setHistory(history => [...history, Pages.ViewTreatments]);
+        setCurrentPage(Pages.ViewTreatments);
+    }
 
     return (
         <View style={styles.container}>
             <Text style={styles.heading}> Trattamenti </Text>
             <View>
-                <TouchableOpacity onPress={() => setCurrentPage(Pages.AddTreatments)} style={styles.button}>
+                <TouchableOpacity onPress={() => toAddTreatments()} style={styles.button}>
                     <Text style={styles.text}> Aggiungi nuovo trattamento </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setCurrentPage(Pages.ViewTreatments)} style={styles.button}>
+                <TouchableOpacity onPress={() => toViewTreatments()} style={styles.button}>
                     <Text style={styles.text}> Visualizza trattamenti </Text>
                 </TouchableOpacity>
             </View>

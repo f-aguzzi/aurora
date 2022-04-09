@@ -8,6 +8,7 @@ export enum Pages {
     Treatments,
     ViewTreatments,
     AddHives,
+    SingleHive,
     HiveAddedCorrectly,
     AddTreatments,
     TreatmentAddedCorrectly,
@@ -27,4 +28,5 @@ export type Treatment = {
 
 export interface PageProps {
     setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
+    setHistory: React.Dispatch<React.SetStateAction<Pages[]>>;
 }

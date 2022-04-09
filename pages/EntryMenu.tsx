@@ -2,13 +2,9 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { styles } from '../types/styles';
 import { StatusBar } from 'expo-status-bar';
-import { Pages } from '../types/types';
+import { PageProps, Pages } from '../types/types';
 
-interface EntryMenuProps {
-	setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
-}
-
-export default function EntryMenu ({ setCurrentPage }: EntryMenuProps) {
+export default function EntryMenu ({ setCurrentPage }: PageProps) {
 
 	const [inputText, setInputText] = useState("");
 	const [isWrong, setIsWrong] = useState(false);

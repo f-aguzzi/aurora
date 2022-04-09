@@ -18,75 +18,75 @@ import Treatments from './pages/Treatments';
 export default function App() {
 
   const [currentPage, setCurrentPage] = useState(Pages.EntryMenu);
+  const [history, setHistory] = useState<Pages[]>([]);
 
   	if (currentPage === Pages.EntryMenu)
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<EntryMenu setCurrentPage={setCurrentPage} />
+			<EntryMenu setHistory={setHistory} setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		);
   	else if (currentPage === Pages.MainMenu) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<MainMenu setCurrentPage={setCurrentPage}/>
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<MainMenu setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		);
   	} else if (currentPage === Pages.Hives) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<Hives setCurrentPage={setCurrentPage} />
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<Hives setHistory={setHistory} setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
-	} else if (currentPage === Pages.ViewHives) {
+	} else if (currentPage === Pages.ViewHives || currentPage === Pages.SingleHive) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
 			<ViewHives setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
 	} else if (currentPage === Pages.AddHives) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<AddHives setCurrentPage={setCurrentPage}/>
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<AddHives setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
 	} else if (currentPage === Pages.HiveAddedCorrectly) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<HiveAddedCorrectly setCurrentPage={setCurrentPage}/>
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<HiveAddedCorrectly setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
 	} else if (currentPage === Pages.Treatments) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<Treatments setCurrentPage={setCurrentPage} />
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<Treatments setHistory={setHistory} setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
 	} else if (currentPage === Pages.ViewTreatments) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<ViewTreatments setCurrentPage={setCurrentPage} />
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<ViewTreatments />
 		</SafeAreaProvider>
 		)
   	} else if (currentPage === Pages.AddTreatments) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<AddTreatments setCurrentPage={setCurrentPage}/>
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<AddTreatments setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
   	} else if (currentPage === Pages.TreatmentAddedCorrectly) {
 		return (
 		<SafeAreaProvider>
-			<CustomHeader setCurrentPage={setCurrentPage} />
-			<TreatmentAddedCorrectly setCurrentPage={setCurrentPage}/>
+			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
+			<TreatmentAddedCorrectly setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
 	}

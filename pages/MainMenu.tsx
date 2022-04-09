@@ -1,20 +1,29 @@
 import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
-import { Pages } from "../types/types";
+import { PageProps, Pages } from "../types/types";
 import { styles } from "../types/styles";
 
-interface MainMenuProps {
-    setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
-}
 
-export default function MainMenu({ setCurrentPage }: MainMenuProps) {
+export default function MainMenu({ setCurrentPage, setHistory }: PageProps) {
+
+    const toHives = () => {
+        setHistory(history => [...history, Pages.Hives]);
+        setCurrentPage(Pages.Hives);
+    }
+
+    const toTreatments = () => {
+        setHistory(history => [...history, Pages.Treatments]);
+        setCurrentPage(Pages.Treatments);
+    }
+    
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Menu principale</Text>
+            <Text style={styles.heading}>Menu principale</Text>
             <View>
-                <TouchableOpacity onPress={() => setCurrentPage(Pages.Hives)} style={styles.button} >
+                <TouchableOpacity onPress={() => toHives()} style={styles.button} >
                     <Text style={styles.text}> Arnie </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setCurrentPage(Pages.Treatments)} style={styles.button}>
+                <TouchableOpacity onPress={() => toTreatments()} style={styles.button}>
                     <Text style={styles.text}> Trattamenti </Text>
                 </TouchableOpacity>
             </View>
