@@ -60,8 +60,6 @@ function ViewTreatments() {
 				)
 			})
 
-			console.log(keys);
-
 			setElements(elements);
 		}).catch(e => {
 			// error handling

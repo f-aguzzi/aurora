@@ -9,6 +9,7 @@ export enum Pages {
     ViewTreatments,
     AddHives,
     SingleHive,
+    RemoveHive,
     HiveAddedCorrectly,
     AddTreatments,
     TreatmentAddedCorrectly,

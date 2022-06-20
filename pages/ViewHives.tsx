@@ -68,8 +68,6 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 				)
 			})
 
-			console.log(keys);
-
 			setElements(elements);
 		}).catch(e => {
 			// error handling

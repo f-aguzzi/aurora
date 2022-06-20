@@ -1,17 +1,24 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../types/styles";
-import { Hive, Treatment } from "../types/types";
+import { Hive, Treatment, Pages } from "../types/types";
 
 interface SingleHiveInterface {
     hive: Hive,
+	setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
+    setHistory: React.Dispatch<React.SetStateAction<Pages[]>>;
 }
 
-function SingleHive({ hive }: SingleHiveInterface) {
+function SingleHive({ hive, setCurrentPage, setHistory }: SingleHiveInterface) {
 
     const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
+
+	const deleteHive = (hive) => {
+		setHistory(history => [..., Pages.SingleHive]);
+		setCurrentPage(Pages.RemoveHive);
+	}
 
     const getData = async (key: string) => {
 		try {
@@ -64,8 +71,6 @@ function SingleHive({ hive }: SingleHiveInterface) {
 				)
 			})
 
-			console.log(keys);
-
 			setElements(elements);
 		}).catch(e => {
 			// error handling
@@ -83,6 +88,9 @@ function SingleHive({ hive }: SingleHiveInterface) {
                 { 
                     (elements.length === 0)? (<Text>Nessun trattamento su quest'arnia. </Text>) : elements
                 }
+				<TouchableOpacity>
+					onPress={() => removeData('h' + hive.hive)} style={styles.confirmButton}>
+				</TouchableOpacity>
             </View>
         </View>
     )
