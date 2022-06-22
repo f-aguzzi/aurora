@@ -3,22 +3,17 @@ import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../types/styles";
 import { Hive, Treatment, Pages } from "../types/types";
+import Modal from "react-native-modal";
 
 interface SingleHiveInterface {
     hive: Hive,
-	setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
-    setHistory: React.Dispatch<React.SetStateAction<Pages[]>>;
 }
 
-function SingleHive({ hive, setCurrentPage, setHistory }: SingleHiveInterface) {
+function SingleHive({ hive }: SingleHiveInterface) {
 
     const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
-
-	const deleteHive = (hive) => {
-		setHistory(history => [..., Pages.SingleHive]);
-		setCurrentPage(Pages.RemoveHive);
-	}
+	const [isModalVisible, setIsModalVisible] = useState<boolean>();
 
     const getData = async (key: string) => {
 		try {
@@ -27,6 +22,10 @@ function SingleHive({ hive, setCurrentPage, setHistory }: SingleHiveInterface) {
 		} catch(e) {
 			// error reading value
 		}
+	}
+
+	const handleModal = () => {
+		setIsModalVisible(modal => !modal);
 	}
 
     const getKeys = async () => {
@@ -79,6 +78,22 @@ function SingleHive({ hive, setCurrentPage, setHistory }: SingleHiveInterface) {
 
 	}, [keys]);
 
+	const deleteHive = () => {
+		return (
+			<Modal isVisible={isModalVisible}>
+				<View style={{ flex: 1 }}>
+					<Text> Elimina alveare? </Text>
+					<TouchableOpacity  onPress={() => handleModal()} style={styles.confirmButton} >
+						<Text style={styles.text}> Elimina </Text>
+					</TouchableOpacity>
+					<TouchableOpacity  onPress={() => handleModal()} style={styles.confirmButton} >
+						<Text style={styles.text}> Annulla </Text>
+					</TouchableOpacity>
+				</View>
+			</Modal>
+		)
+	}
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Arnia {hive.hive} </Text>
@@ -88,9 +103,10 @@ function SingleHive({ hive, setCurrentPage, setHistory }: SingleHiveInterface) {
                 { 
                     (elements.length === 0)? (<Text>Nessun trattamento su quest'arnia. </Text>) : elements
                 }
-				<TouchableOpacity>
-					onPress={() => removeData('h' + hive.hive)} style={styles.confirmButton}>
+				<TouchableOpacity onPress={() => handleModal()} style={styles.confirmButton}>
+					<Text style={styles.text}> Elimina alveare </Text>
 				</TouchableOpacity>
+				{ deleteHive }
             </View>
         </View>
     )
