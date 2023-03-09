@@ -10,11 +10,11 @@ import { PageProps, Pages, Treatment } from '../types/types';
 function AddTreatments({ setCurrentPage, setHistory }: PageProps) {
 
     const [title, setTitle] = useState("");
-    const [hive, setHive] = useState(0);
+    const [field, setField] = useState(0);
     const [description, setDescription] = useState("");
     const [date, setDate] = useState(new Date());
 
-    const [possibleHives, setPossibleHives] = useState<string[]>([]);
+    const [possibleHives, setPossibleFields] = useState<string[]>([]);
 
     const storeData = async (key: string, value: string) => {
         try {
@@ -39,7 +39,7 @@ function AddTreatments({ setCurrentPage, setHistory }: PageProps) {
         let treatment: Treatment;
         treatment = {
             'title': title,
-            'hive': hive,
+            'field': field,
             'description': description,
             'registerDate': date
         }
@@ -51,16 +51,16 @@ function AddTreatments({ setCurrentPage, setHistory }: PageProps) {
         setCurrentPage(Pages.TreatmentAddedCorrectly);
     }
 
-    const getHives = () => {
+    const getFields = () => {
         getKeys().then(keys => {
-            const hiveKeys = keys.filter(item => item[0] === 'h');
-            const hiveNames = hiveKeys.map(item => item.substring(1));
-            setPossibleHives(hiveNames);
+            const fieldKeys = keys.filter(item => item[0] === 'h');
+            const fieldNames = fieldKeys.map(item => item.substring(1));
+            setPossibleFields(fieldNames);
         })
     }
 
     useEffect(() => {
-        getHives();
+        getFields();
     }, []);
     
     return (
@@ -83,7 +83,7 @@ function AddTreatments({ setCurrentPage, setHistory }: PageProps) {
                 dropdownStyle={styles.dropdownStyle}
                 dropdownTextStyle={styles.dropdownText}
                 defaultValue={"Seleziona..."}
-                onSelect={(index, value) => setHive(parseInt(value))}
+                onSelect={(index, value) => setField(parseInt(value))}
             />
             <View style={styles.inputView}>
                 <Text style={styles.text}> Data d'inserimento </Text>

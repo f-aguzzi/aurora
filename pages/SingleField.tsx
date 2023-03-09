@@ -2,14 +2,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../types/styles";
-import { Hive, Treatment, Pages } from "../types/types";
+import { Field, Treatment, Pages } from "../types/types";
 import Modal from "react-native-modal";
 
-interface SingleHiveInterface {
-    hive: Hive,
+interface SingleFieldInterface {
+    field: Field,
 }
 
-function SingleHive({ hive }: SingleHiveInterface) {
+function SingleField({ field }: SingleFieldInterface) {
 
     const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
@@ -57,12 +57,12 @@ function SingleHive({ hive }: SingleHiveInterface) {
 
 		Promise.all(treatments).then(result => {
 
-            const filteredResults = result.filter(item => item.hive === hive.hive);
+            const filteredResults = result.filter(item => item.field === field.field);
 
 			let elements: JSX.Element[] = [];
 			filteredResults.map(async (treatment) => {
 				elements.push(
-					<View key={treatment.title + treatment.registerDate} style={styles.hiveView}>
+					<View key={treatment.title + treatment.registerDate} style={styles.fieldView}>
 						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
 						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
                         <Text style={styles.text}> Descrizione: {treatment.description} </Text>
@@ -78,11 +78,11 @@ function SingleHive({ hive }: SingleHiveInterface) {
 
 	}, [keys]);
 
-	const deleteHive = () => {
+	const deleteField = () => {
 		return (
 			<Modal isVisible={isModalVisible}>
 				<View style={{ flex: 1 }}>
-					<Text> Elimina alveare? </Text>
+					<Text> Elimina campo? </Text>
 					<TouchableOpacity  onPress={() => handleModal()} style={styles.confirmButton} >
 						<Text style={styles.text}> Elimina </Text>
 					</TouchableOpacity>
@@ -96,20 +96,20 @@ function SingleHive({ hive }: SingleHiveInterface) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Arnia {hive.hive} </Text>
-            <Text style={styles.text}> Creata il {hive.registerDate.toString()} </Text>
+            <Text style={styles.heading}>Campo {field.field} </Text>
+            <Text style={styles.text}> Creato il {field.registerDate.toString()} </Text>
             <View>
                 <Text style={styles.text}> Trattamenti ricevuti: </Text>
                 { 
-                    (elements.length === 0)? (<Text>Nessun trattamento su quest'arnia. </Text>) : elements
+                    (elements.length === 0)? (<Text>Nessun trattamento su questo campo. </Text>) : elements
                 }
 				<TouchableOpacity onPress={() => handleModal()} style={styles.confirmButton}>
-					<Text style={styles.text}> Elimina alveare </Text>
+					<Text style={styles.text}> Elimina campo </Text>
 				</TouchableOpacity>
-				{ deleteHive }
+				{ deleteField }
             </View>
         </View>
     )
 }
 
-export default SingleHive;
+export default SingleField;

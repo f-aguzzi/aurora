@@ -51,9 +51,9 @@ function ViewTreatments() {
 			let elements: JSX.Element[] = [];
 			result.map(async (treatment) => {
 				elements.push(
-					<View key={treatment.title + treatment.registerDate} style={styles.hiveView}>
+					<View key={treatment.title + treatment.registerDate} style={styles.fieldView}>
 						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
-                        <Text style={styles.text}> Sull'arnia: {treatment.hive} </Text>
+                        <Text style={styles.text}> Sul campo: {treatment.field} </Text>
 						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
                         <Text style={styles.text}> Descrizione: {treatment.description} </Text>
 					</View>

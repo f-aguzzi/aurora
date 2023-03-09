@@ -36,7 +36,7 @@ export default function CustomHeader({ setCurrentPage, setHistory, history }: Cu
 					<Text style={{margin: 4, fontSize: 16}}>⬅️</Text>
 				</TouchableOpacity>
 			}
-			centerComponent={{ text: 'LA COLOMBA', style: { color: '#fff', fontSize: 24 } }}
+			centerComponent={{ text: 'AURORA', style: { color: '#fff', fontSize: 24 } }}
 			rightComponent={
 				<TouchableOpacity onPress={() => setCurrentPage(Pages.MainMenu)}>
 					<Text style={{margin: 4, fontSize: 16}}>🏠</Text>

@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         color: 'red',
     },
-    hiveView: {
+    fieldView: {
         textAlign: 'right',
         borderWidth: 1,
         borderColor: 'black',

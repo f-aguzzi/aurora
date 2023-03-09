@@ -5,9 +5,9 @@ import { styles } from "../types/styles";
 
 export default function MainMenu({ setCurrentPage, setHistory }: PageProps) {
 
-    const toHives = () => {
-        setHistory(history => [...history, Pages.Hives]);
-        setCurrentPage(Pages.Hives);
+    const toFields = () => {
+        setHistory(history => [...history, Pages.Fields]);
+        setCurrentPage(Pages.Fields);
     }
 
     const toTreatments = () => {
@@ -20,8 +20,8 @@ export default function MainMenu({ setCurrentPage, setHistory }: PageProps) {
         <View style={styles.container}>
             <Text style={styles.heading}>Menu principale</Text>
             <View>
-                <TouchableOpacity onPress={() => toHives()} style={styles.button} >
-                    <Text style={styles.text}> Arnie </Text>
+                <TouchableOpacity onPress={() => toFields()} style={styles.button} >
+                    <Text style={styles.text}> Campi </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => toTreatments()} style={styles.button}>
                     <Text style={styles.text}> Trattamenti </Text>

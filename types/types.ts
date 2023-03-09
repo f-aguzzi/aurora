@@ -3,25 +3,25 @@ import React from "react"
 export enum Pages {
     EntryMenu,
     MainMenu,
-    Hives,
-    ViewHives,
+    Fields,
+    ViewFields,
     Treatments,
     ViewTreatments,
-    AddHives,
-    SingleHive,
-    RemoveHive,
-    HiveAddedCorrectly,
+    AddFields,
+    SingleField,
+    RemoveField,
+    FieldAddedCorrectly,
     AddTreatments,
     TreatmentAddedCorrectly,
 }
 
-export type Hive = {
-    hive: number,
+export type Field = {
+    field: number,
     registerDate: Date,
 }
 
 export type Treatment = {
-    hive: number,
+    field: number,
     registerDate: Date,
     title: string,
     description: string,

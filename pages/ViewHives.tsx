@@ -2,21 +2,20 @@ import React, { JSXElementConstructor, ReactChild, useEffect, useState } from "r
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../types/styles";
-import { Hive, Pages } from "../types/types";
-import SingleHive from "./SingleHive";
-import HiveAddedCorrectly from "./HiveAddedCorrectly";
+import { Field, Pages } from "../types/types";
+import SingleHive from "./SingleField";
 
-interface ViewHivesProps {
+interface ViewFieldsProps {
     setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
 }
 
-function ViewHives({ setCurrentPage }: ViewHivesProps) {
+function ViewHives({ setCurrentPage }: ViewFieldsProps) {
 
 	const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
-	const [singleHive, setSingleHive] = useState(0);
-	const [selectedHive, setSelectedHive] = useState<Hive>({
-		hive: 0,
+	const [singleField, setSingleField] = useState(0);
+	const [selectedField, setSelectedField] = useState<Field>({
+		field: 0,
 		registerDate: new Date(),
 	});
 
@@ -51,7 +50,7 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 
 	useEffect(() => {
 
-		let hives: Promise<Hive>[] = [];
+		let hives: Promise<Field>[] = [];
 		keys.map(async (key) => {
 			hives.push(getData(key));
 		});
@@ -59,11 +58,11 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 		Promise.all(hives).then(result => {
 
 			let elements: JSX.Element[] = [];
-			result.map(async (hive) => {
+			result.map(async (field) => {
 				elements.push(
-					<TouchableOpacity key={hive.hive} onPress={() => setSingleHive(hive.hive)} style={styles.hiveView}>
-						<Text style={styles.text}> Arnia {hive.hive.toString()} </Text>
-						<Text style={styles.text}> Costruita il {hive.registerDate} </Text>
+					<TouchableOpacity key={field.field} onPress={() => setSingleField(field.field)} style={styles.fieldView}>
+						<Text style={styles.text}> Arnia {field.field.toString()} </Text>
+						<Text style={styles.text}> Costruita il {field.registerDate} </Text>
 					</TouchableOpacity>
 				)
 			})
@@ -76,13 +75,13 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 
 	}, [keys]);
 
-	const getSelectedHive = () => {
-		getData('h' + singleHive).then(result => {
-			setSelectedHive(result);
+	const getSelectedField = () => {
+		getData('h' + singleField).then(result => {
+			setSelectedField(result);
 		});
 	}
 
-	if (singleHive === 0) {
+	if (singleField === 0) {
 		return (
 			<View style={styles.container} >
 				<Text style={styles.heading}> Lista Arnie </Text>
@@ -93,10 +92,10 @@ function ViewHives({ setCurrentPage }: ViewHivesProps) {
 		)	
 	} else {
 
-		getSelectedHive();
+		getSelectedField();
 
 		return (
-			<SingleHive hive={selectedHive} />
+			<SingleHive field={selectedField} />
 		)
 	}
     

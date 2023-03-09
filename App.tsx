@@ -5,11 +5,11 @@ import { Pages } from './types/types';
 import CustomHeader from "./components/CustomHeader";
 import EntryMenu from './pages/EntryMenu';
 import MainMenu from './pages/MainMenu';
-import Hives from './pages/Hives';
-import AddHives from './pages/AddHives';
+import Hives from './pages/Fields';
+import AddHives from './pages/AddFields';
 import AddTreatments from './pages/AddTreatments';
 import TreatmentAddedCorrectly from './pages/TreatmentAddedCorrectly';
-import HiveAddedCorrectly from './pages/HiveAddedCorrectly';
+import HiveAddedCorrectly from './pages/FieldAddedCorrectly';
 import ViewHives from './pages/ViewHives';
 import ViewTreatments from './pages/ViewTreatments';
 import Treatments from './pages/Treatments';
@@ -33,28 +33,28 @@ export default function App() {
 			<MainMenu setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		);
-  	} else if (currentPage === Pages.Hives) {
+  	} else if (currentPage === Pages.Fields) {
 		return (
 		<SafeAreaProvider>
 			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
 			<Hives setHistory={setHistory} setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
-	} else if (currentPage === Pages.ViewHives || currentPage === Pages.SingleHive) {
+	} else if (currentPage === Pages.ViewFields || currentPage === Pages.SingleField) {
 		return (
 		<SafeAreaProvider>
 			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
 			<ViewHives setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
-	} else if (currentPage === Pages.AddHives) {
+	} else if (currentPage === Pages.AddFields) {
 		return (
 		<SafeAreaProvider>
 			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
 			<AddHives setHistory={setHistory} setCurrentPage={setCurrentPage}/>
 		</SafeAreaProvider>
 		)
-	} else if (currentPage === Pages.HiveAddedCorrectly) {
+	} else if (currentPage === Pages.FieldAddedCorrectly) {
 		return (
 		<SafeAreaProvider>
 			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />

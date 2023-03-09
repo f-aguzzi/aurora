@@ -2,10 +2,10 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../types/styles'
-import { Hive, PageProps, Pages } from '../types/types'
+import { Field, PageProps, Pages } from '../types/types'
 
 
-function AddHives({ setCurrentPage, setHistory }: PageProps) {
+function AddFields({ setCurrentPage, setHistory }: PageProps) {
 
     const [number, setNumber] = useState(0);
     const [date, setDate] = useState(new Date());
@@ -28,7 +28,7 @@ function AddHives({ setCurrentPage, setHistory }: PageProps) {
 		}
 	}
 
-    const insertHive = async () => {
+    const insertField = async () => {
 
         let condition = await getData("h" + number.toString());
         setErrorMessage(number.toString());
@@ -39,20 +39,20 @@ function AddHives({ setCurrentPage, setHistory }: PageProps) {
         }
 
         if (condition === null) {
-            let hive: Hive;
-            hive = {
-                'hive': number,
+            let field: Field;
+            field = {
+                'field': number,
                 'registerDate': date
             }
 
-            let string = JSON.stringify(hive);
+            let string = JSON.stringify(field);
             storeData("h" + number.toString(), string);
 
-            setHistory(history => [...history, Pages.HiveAddedCorrectly]);
-            setCurrentPage(Pages.HiveAddedCorrectly);
+            setHistory(history => [...history, Pages.FieldAddedCorrectly]);
+            setCurrentPage(Pages.FieldAddedCorrectly);
             
         } else {
-            setErrorMessage("Arnia già esistente");
+            setErrorMessage("Campo già esistente");
         }
       
     }
@@ -60,10 +60,10 @@ function AddHives({ setCurrentPage, setHistory }: PageProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}> Inserisci nuova arnia </Text>
+            <Text style={styles.heading}> Inserisci nuovo campo </Text>
             <View>
                 <View style={styles.inputView}>
-                    <Text style={styles.text}> Numero dell'arnia </Text>
+                    <Text style={styles.text}> Numero del campo </Text>
                     <TextInput 
                         onChangeText={e => setNumber(parseInt(e))}
                         autoCorrect={false}
@@ -85,7 +85,7 @@ function AddHives({ setCurrentPage, setHistory }: PageProps) {
 			        />
                 </View>
             </View>
-            <TouchableOpacity onPress={() => insertHive()} style={styles.confirmButton}>
+            <TouchableOpacity onPress={() => insertField()} style={styles.confirmButton}>
 				<Text style={{fontSize: 24, color: 'white'}}>Inserisci</Text>
 			</TouchableOpacity>
             <Text style={styles.error}> { errorMessage } </Text>
@@ -93,4 +93,4 @@ function AddHives({ setCurrentPage, setHistory }: PageProps) {
     )
 }
 
-export default AddHives;
+export default AddFields;
