@@ -3,13 +3,13 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../types/styles";
 import { Field, Pages } from "../types/types";
-import SingleHive from "./SingleField";
+import SingleField from "./SingleField";
 
 interface ViewFieldsProps {
     setCurrentPage: React.Dispatch<React.SetStateAction<Pages>>;
 }
 
-function ViewHives({ setCurrentPage }: ViewFieldsProps) {
+function ViewFields({ setCurrentPage }: ViewFieldsProps) {
 
 	const [keys, setKeys] = useState<readonly string[]>([]);
 	const [elements, setElements] = useState<JSX.Element[]>([]);
@@ -50,19 +50,19 @@ function ViewHives({ setCurrentPage }: ViewFieldsProps) {
 
 	useEffect(() => {
 
-		let hives: Promise<Field>[] = [];
+		let fields: Promise<Field>[] = [];
 		keys.map(async (key) => {
-			hives.push(getData(key));
+			fields.push(getData(key));
 		});
 
-		Promise.all(hives).then(result => {
+		Promise.all(fields).then(result => {
 
 			let elements: JSX.Element[] = [];
 			result.map(async (field) => {
 				elements.push(
 					<TouchableOpacity key={field.field} onPress={() => setSingleField(field.field)} style={styles.fieldView}>
-						<Text style={styles.text}> Arnia {field.field.toString()} </Text>
-						<Text style={styles.text}> Costruita il {field.registerDate} </Text>
+						<Text style={styles.text}> Campo {field.field.toString()} </Text>
+						<Text style={styles.text}> Registrato il {field.registerDate} </Text>
 					</TouchableOpacity>
 				)
 			})
@@ -84,7 +84,7 @@ function ViewHives({ setCurrentPage }: ViewFieldsProps) {
 	if (singleField === 0) {
 		return (
 			<View style={styles.container} >
-				<Text style={styles.heading}> Lista Arnie </Text>
+				<Text style={styles.heading}> Lista Campi </Text>
 				<ScrollView>
 				{ elements }
 				</ScrollView>
@@ -95,10 +95,10 @@ function ViewHives({ setCurrentPage }: ViewFieldsProps) {
 		getSelectedField();
 
 		return (
-			<SingleHive field={selectedField} />
+			<SingleField field={selectedField} />
 		)
 	}
     
 }
 
-export default ViewHives;
+export default ViewFields;

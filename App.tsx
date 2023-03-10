@@ -10,7 +10,7 @@ import AddHives from './pages/AddFields';
 import AddTreatments from './pages/AddTreatments';
 import TreatmentAddedCorrectly from './pages/TreatmentAddedCorrectly';
 import HiveAddedCorrectly from './pages/FieldAddedCorrectly';
-import ViewHives from './pages/ViewHives';
+import ViewFields from './pages/ViewFields';
 import ViewTreatments from './pages/ViewTreatments';
 import Treatments from './pages/Treatments';
 
@@ -44,7 +44,7 @@ export default function App() {
 		return (
 		<SafeAreaProvider>
 			<CustomHeader history={history} setHistory={setHistory} setCurrentPage={setCurrentPage} />
-			<ViewHives setCurrentPage={setCurrentPage} />
+			<ViewFields setCurrentPage={setCurrentPage} />
 		</SafeAreaProvider>
 		)
 	} else if (currentPage === Pages.AddFields) {

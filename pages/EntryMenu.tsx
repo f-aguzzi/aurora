@@ -10,7 +10,7 @@ export default function EntryMenu ({ setCurrentPage }: PageProps) {
 	const [isWrong, setIsWrong] = useState(false);
 
 	const authenticateUser = () => {
-		if (inputText === "ARNIA")
+		if (inputText === "CAMPO")
 			setCurrentPage(Pages.MainMenu);
 		else
 			setIsWrong(true);

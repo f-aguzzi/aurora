@@ -17,10 +17,10 @@ function FieldAddedCorrectly({ setCurrentPage, setHistory }: PageProps) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.heading}> Arnia inserita correttamente. </Text>
+			<Text style={styles.heading}> Campo inserito correttamente. </Text>
 			<View>
 				<TouchableOpacity onPress={() => anotherField()} style={styles.button} >
-					<Text style={styles.text}> Inserisci un'altra arnia </Text>
+					<Text style={styles.text}> Inserisci un altro campo </Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => toMenu()} style={styles.button} >
 					<Text style={styles.text}> Torna al menu principale </Text>

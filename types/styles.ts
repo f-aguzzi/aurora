@@ -15,13 +15,13 @@ export const styles = StyleSheet.create({
         margin: 30,
     },
     button: {
-        backgroundColor: 'yellow',
+        backgroundColor: 'orange',
         margin: 5,
         padding: 10,
         borderRadius: 5
     },
     confirmButton: {
-        backgroundColor: 'green',
+        backgroundColor: 'orange',
         padding: 5,
         margin: 5,
         borderRadius: 5

@@ -76,6 +76,7 @@ function AddTreatments({ setCurrentPage, setHistory }: PageProps) {
                     placeholder="Inserisci il titolo..."
                 />
             </View >
+            <Text style={styles.text}> Campo </Text>
             <ModalDropdown 
                 options={possibleHives}
                 style={styles.dropdown}

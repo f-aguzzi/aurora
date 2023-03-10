@@ -3,7 +3,7 @@ import { styles } from "../types/styles";
 import { PageProps, Pages } from "../types/types";
 
 
-function Hives({ setCurrentPage, setHistory }: PageProps) {
+function Fields({ setCurrentPage, setHistory }: PageProps) {
 
     const viewFields = () => {
         setHistory(history => [...history, Pages.ViewFields]);
@@ -17,7 +17,7 @@ function Hives({ setCurrentPage, setHistory }: PageProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}> Arnie </Text>
+            <Text style={styles.heading}> Campi </Text>
             <View>
                 <TouchableOpacity style={styles.button} onPress={() => viewFields()} >
                     <Text style={styles.text}> Visualizza campi </Text>
@@ -30,4 +30,4 @@ function Hives({ setCurrentPage, setHistory }: PageProps) {
     )
 }
 
-export default Hives;
+export default Fields;

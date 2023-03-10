@@ -43,7 +43,7 @@ export default function CustomHeader({ setCurrentPage, setHistory, history }: Cu
 				</TouchableOpacity>
 			}
 			containerStyle={{
-				backgroundColor: 'green',
+				backgroundColor: '#1F85DE',
 			}}
 		/>
 	)
