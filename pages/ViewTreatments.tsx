@@ -54,7 +54,7 @@ function ViewTreatments() {
 					<View key={treatment.title + treatment.registerDate} style={styles.fieldView}>
 						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
                         <Text style={styles.text}> Sul campo: {treatment.field} </Text>
-						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
+						<Text style={styles.text}> Eseguito il: {treatment.registerDate.toString()} </Text>
                         <Text style={styles.text}> Descrizione: {treatment.description} </Text>
 					</View>
 				)
