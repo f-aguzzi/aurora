@@ -64,7 +64,7 @@ function SingleField({ field }: SingleFieldInterface) {
 				elements.push(
 					<View key={treatment.title + treatment.registerDate} style={styles.fieldView}>
 						<Text style={styles.text}> Trattamento: {treatment.title} </Text>
-						<Text style={styles.text}> Eseguito il: {treatment.registerDate} </Text>
+						<Text style={styles.text}> Eseguito il: {treatment.registerDate.toString()} </Text>
                         <Text style={styles.text}> Descrizione: {treatment.description} </Text>
 					</View>
 				)
@@ -79,14 +79,25 @@ function SingleField({ field }: SingleFieldInterface) {
 	}, [keys]);
 
 	const deleteField = () => {
+
+		const del = () => {
+			// to do
+			handleModal()
+		}
+
+		const cancel = () => {
+			// to do
+			handleModal()
+		}
+
 		return (
 			<Modal isVisible={isModalVisible}>
 				<View style={{ flex: 1 }}>
 					<Text> Elimina campo? </Text>
-					<TouchableOpacity  onPress={() => handleModal()} style={styles.confirmButton} >
+					<TouchableOpacity  onPress={() => del()} style={styles.confirmButton} >
 						<Text style={styles.text}> Elimina </Text>
 					</TouchableOpacity>
-					<TouchableOpacity  onPress={() => handleModal()} style={styles.confirmButton} >
+					<TouchableOpacity  onPress={() => cancel()} style={styles.confirmButton} >
 						<Text style={styles.text}> Annulla </Text>
 					</TouchableOpacity>
 				</View>
@@ -106,7 +117,7 @@ function SingleField({ field }: SingleFieldInterface) {
 				<TouchableOpacity onPress={() => handleModal()} style={styles.confirmButton}>
 					<Text style={styles.text}> Elimina campo </Text>
 				</TouchableOpacity>
-				{ deleteField }
+				{ deleteField() }
             </View>
         </View>
     )

@@ -62,7 +62,7 @@ function ViewFields({ setCurrentPage }: ViewFieldsProps) {
 				elements.push(
 					<TouchableOpacity key={field.field} onPress={() => setSingleField(field.field)} style={styles.fieldView}>
 						<Text style={styles.text}> Campo {field.field.toString()} </Text>
-						<Text style={styles.text}> Registrato il {field.registerDate} </Text>
+						<Text style={styles.text}> Registrato il {field.registerDate.toString()} </Text>
 					</TouchableOpacity>
 				)
 			})
