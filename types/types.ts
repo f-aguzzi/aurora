@@ -13,6 +13,11 @@ export enum Pages {
     FieldAddedCorrectly,
     AddTreatments,
     TreatmentAddedCorrectly,
+    Seedings,
+    AddSeedings,
+    ViewSeedings,
+    RemoveSeedings,
+    SeedingAddedCorrectly,
 }
 
 export type Field = {
@@ -21,6 +26,13 @@ export type Field = {
 }
 
 export type Treatment = {
+    field: number,
+    registerDate: Date,
+    title: string,
+    description: string,
+}
+
+export type Seeding = {
     field: number,
     registerDate: Date,
     title: string,

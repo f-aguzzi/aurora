@@ -14,6 +14,11 @@ export default function MainMenu({ setCurrentPage, setHistory }: PageProps) {
         setHistory(history => [...history, Pages.Treatments]);
         setCurrentPage(Pages.Treatments);
     }
+
+    const toSeedings = () => {
+        setHistory(history => [...history, Pages.Seedings]);
+        setCurrentPage(Pages.Seedings);
+    }
     
 
     return (
@@ -25,6 +30,9 @@ export default function MainMenu({ setCurrentPage, setHistory }: PageProps) {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => toTreatments()} style={styles.button}>
                     <Text style={styles.text}> Trattamenti </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => toSeedings()} style={styles.button}>
+                    <Text style={styles.text}> Semine </Text>
                 </TouchableOpacity>
             </View>
         </View>
